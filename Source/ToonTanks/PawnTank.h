@@ -20,6 +20,7 @@ class TOONTANKS_API APawnTank : public APawnBase
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	virtual void HandleDestruction() override;
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
 		UCameraComponent* camera;
@@ -36,6 +37,7 @@ private:
 	//To run on tick 
 	void Move();
 	void Rotate();
+	APlayerController* PlayerControllerRef;
 public:
 	APawnTank();
 	// Called every frame

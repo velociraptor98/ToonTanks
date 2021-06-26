@@ -11,6 +11,9 @@ APawnTurret::APawnTurret()
 void APawnTurret::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (Player && ReturnDistanceToPlayer() >= FireRange) {
+		Super::RotateTurretFunction(Player->GetActorLocation());
+	}
 	
 }
 void APawnTurret::BeginPlay()
@@ -21,12 +24,16 @@ void APawnTurret::BeginPlay()
 	Player = Cast<APawnTank>(UGameplayStatics::GetPlayerPawn(this, 0));
 
 }
+void APawnTurret::HandleDestruction()
+{
+	Super::HandleDestruction();
+	Destroy();
+}
 void APawnTurret::CheckFireCondition() {
 	if (!Player) {
 		return;
 	}
 	if (ReturnDistanceToPlayer() <= FireRange) {
-		UE_LOG(LogTemp, Warning, TEXT("TImer works"));
 	}
 }
 

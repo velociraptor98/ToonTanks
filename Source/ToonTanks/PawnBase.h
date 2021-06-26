@@ -24,6 +24,11 @@ public:
 		UCapsuleComponent* Capsule;
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Components")
 		USceneComponent* ProjectileSpawnPoint;
-	
+
+protected: 
+	void RotateTurretFunction(FVector LookAtTarget);
+	void Fire();
+	virtual void HandleDestruction();
+
 
 };
